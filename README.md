@@ -8,30 +8,30 @@ A natural language backend service built with FastAPI, SQLite, and Google Gemini
 - **Automated Seed Data:** Includes a script to generate a rich, realistic vehicle dataset.
 
 ## Setup Instructions
-1. Clone the repository:
+
+1. **Clone the repository:**
    ```bash
    git clone [https://github.com/Sapna35/Cars24.git](https://github.com/Sapna35/Cars24.git)
    cd Cars24
 
    Install dependencies:
+   ```bash
+   pip install fastapi uvicorn openai sqlalchemy google-genai
 
-Bash
-pip install fastapi uvicorn openai sqlalchemy google-genai
-Set your Gemini API key:
+   Set your Gemini API key:
+   ```bash
+   $env:GEMINI_API_KEY="your_api_key"
 
-PowerShell: $env:GEMINI_API_KEY="your_api_key"
+   Generate the database seed data:
+   ```bash
+   python seed.py
 
-Command Prompt: set GEMINI_API_KEY=your_api_key
+   Run the application:
+   ```bash
+   uvicorn main:app --reload
 
-Generate the database seed data:
-
-Bash
-python seed.py
-Run the application:
-
-Bash
-uvicorn main:app --reload
-Open your browser and navigate to: http://127.0.0.1:8000/docs
+   Open your browser and navigate to:
+http://127.0.0.1:8000/docs
 
 API Endpoints
 Search Vehicles
@@ -42,15 +42,13 @@ Method: POST
 Content-Type: application/json
 
 Request Body Example:
-
-JSON
-{
+ ```bash
+ {
   "query": "Find all diesel cars"
 }
-Response Example:
 
-JSON
-{
+ ```bash
+ {
   "user_query": "Find all diesel cars",
   "generated_sql": "SELECT * FROM vehicles WHERE LOWER(fuel_type) = 'diesel';",
   "results": [
